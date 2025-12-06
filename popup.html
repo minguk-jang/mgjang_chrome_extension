@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스크린샷 매니저</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 상단 캡처 버튼 -->
+    <header>
+      <button id="capture-btn">📸 스크린샷 찍기</button>
+    </header>
+    
+    <!-- 메인 미리보기 영역 -->
+    <section id="preview-section" class="hidden">
+      <div class="preview-container">
+        <img id="main-preview" src="" alt="선택된 스크린샷">
+      </div>
+      <div class="info-display">
+        <div id="info-date" class="info-date"></div>
+        <a id="info-url" class="info-url" href="#" target="_blank"></a>
+      </div>
+      <div class="copy-hint">Tip: <span class="key-badge">Cmd</span> / <span class="key-badge">Ctrl</span> + <span class="key-badge">C</span> 로 복사</div>
+    </section>
+
+    <!-- 빈 상태 메시지 -->
+    <div id="empty-state" class="empty-state hidden">
+      <p>아직 캡처한 스크린샷이 없습니다</p>
+    </div>
+
+    <!-- 기록 섹션 -->
+    <section class="history-section">
+      <h2>기록</h2>
+      <div id="thumbnail-grid" class="grid">
+        <!-- 썸네일들이 여기에 추가됩니다 -->
+      </div>
+    </section>
+  </div>
+
+  <!-- 토스트 알림 -->
+  <div id="toast" class="toast hidden">복사됨!</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
