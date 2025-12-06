@@ -1,12 +1,12 @@
-/* 기본 설정 및 다크 테마 */
+/* 기본 설정 및 라이트 테마 */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100vh;
-  background-color: #1a1d2e; /* 다크 네이비 */
-  color: white;
+  background-color: #ffffff; /* 화이트 배경 */
+  color: #1f2937;
   overflow: hidden; /* 전체 스크롤 방지, 탭 내부 스크롤 사용 */
   display: flex;
   flex-direction: column;
@@ -17,10 +17,10 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #1a1d2e;
+  background: #f9fafb;
 }
 ::-webkit-scrollbar-thumb {
-  background: #374151;
+  background: #d1d5db;
   border-radius: 4px;
 }
 
@@ -28,8 +28,8 @@ body {
 .tab-nav {
   display: flex;
   height: 48px;
-  background-color: #111827; /* 더 어두운 배경 */
-  border-bottom: 1px solid #374151;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
   flex-shrink: 0;
 }
 
@@ -37,21 +37,21 @@ body {
   flex: 1;
   background: none;
   border: none;
-  color: #9ca3af;
+  color: #6b7280;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
   border-bottom: 2px solid transparent;
 }
 
 .tab-btn:hover {
-  color: #e5e7eb;
-  background-color: rgba(255, 255, 255, 0.05);
+  color: #1f2937;
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .tab-btn.active {
-  color: #fff;
+  color: #1f2937;
   border-bottom-color: #3b82f6; /* 활성 탭 파란색 밑줄 */
 }
 
@@ -88,11 +88,18 @@ body {
 }
 
 /* --- 공통 스타일 --- */
+h1.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+}
+
 h2 {
   font-size: 14px;
-  color: #9ca3af;
+  color: #6b7280;
   margin: 0 0 12px 0;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .hidden {
@@ -128,34 +135,65 @@ header {
   margin-bottom: 24px;
 }
 
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.header-top h1 {
+  margin: 0;
+}
+
+.clear-all-btn {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #6b7280;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.clear-all-btn:hover {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
 button#capture-btn {
   width: 100%;
   height: 48px;
-  background: linear-gradient(to right, #3b82f6, #2563eb);
+  background: #3b82f6;
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 button#capture-btn:hover {
-  opacity: 0.9;
+  background-color: #2563eb;
 }
 
 .preview-container {
   width: 100%;
   height: 200px;
-  background-color: #e5e7eb;
+  background-color: #f3f4f6;
   border-radius: 12px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  border: 1px solid #e5e7eb;
 }
 
 #main-preview {
@@ -171,13 +209,13 @@ button#capture-btn:hover {
 
 .info-date {
   font-size: 12px;
-  color: #9ca3af;
+  color: #6b7280;
   margin-bottom: 4px;
 }
 
 .info-url {
   font-size: 14px;
-  color: #60a5fa;
+  color: #3b82f6;
   text-decoration: none;
   white-space: nowrap;
   overflow: hidden;
@@ -191,12 +229,13 @@ button#capture-btn:hover {
 
 .copy-hint {
   font-size: 11px;
-  color: #6b7280;
+  color: #9ca3af;
   margin-top: 4px;
 }
 
 .key-badge {
-  background-color: #374151;
+  background-color: #e5e7eb;
+  color: #4b5563;
   padding: 2px 6px;
   border-radius: 4px;
   font-family: monospace;
@@ -211,20 +250,22 @@ button#capture-btn:hover {
 .thumbnail-item {
   position: relative;
   aspect-ratio: 1 / 1;
-  background-color: #374151;
+  background-color: #f3f4f6;
   border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  border: 3px solid transparent;
+  border: 2px solid #e5e7eb;
   transition: border-color 0.2s, transform 0.2s;
 }
 
 .thumbnail-item:hover {
   transform: scale(1.02);
+  border-color: #d1d5db;
 }
 
 .thumbnail-item.selected {
   border-color: #3b82f6;
+  border-width: 3px;
 }
 
 .thumbnail-item img {
@@ -246,10 +287,32 @@ button#capture-btn:hover {
 }
 
 .empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  padding: 80px 20px;
+  min-height: 300px;
+}
+
+.empty-icon {
+  font-size: 80px;
+  margin-bottom: 24px;
+  opacity: 0.3;
+}
+
+.empty-message {
+  font-size: 16px;
   color: #6b7280;
-  padding: 40px 0;
-  font-size: 14px;
+  margin: 0 0 8px 0;
+  font-weight: 500;
+}
+
+.empty-hint {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
 }
 
 
@@ -258,15 +321,41 @@ button#capture-btn:hover {
   margin-bottom: 24px;
 }
 
+#prompt-title {
+  width: 100%;
+  height: 42px;
+  background-color: #ffffff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+}
+
+#prompt-title:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+#prompt-title::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
 #prompt-input {
   width: 100%;
   height: 120px;
-  background-color: #2d3748;
-  color: white;
-  border: 1px solid #4a5568;
+  background-color: #ffffff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 12px;
-  font-family: monospace; /* 코드 느낌 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 14px;
   resize: vertical;
   box-sizing: border-box;
@@ -275,6 +364,7 @@ button#capture-btn:hover {
 #prompt-input:focus {
   outline: none;
   border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 #save-prompt-btn {
@@ -285,7 +375,7 @@ button#capture-btn:hover {
   border: none;
   border-radius: 8px;
   margin-top: 12px;
-  font-weight: bold;
+  font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -295,7 +385,7 @@ button#capture-btn:hover {
 }
 
 #save-prompt-btn:disabled {
-  background-color: #4b5563;
+  background-color: #e5e7eb;
   cursor: not-allowed;
   color: #9ca3af;
 }
@@ -307,9 +397,15 @@ button#capture-btn:hover {
   margin-bottom: 12px;
 }
 
+.prompt-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .count-badge {
-  background-color: #374151;
-  color: #9ca3af;
+  background-color: #f3f4f6;
+  color: #6b7280;
   padding: 2px 8px;
   border-radius: 12px;
   font-size: 12px;
@@ -322,15 +418,16 @@ button#capture-btn:hover {
 }
 
 .prompt-item {
-  background-color: #2d3748;
+  background-color: #ffffff;
   border-radius: 8px;
   padding: 12px;
-  transition: background-color 0.2s;
-  border: 1px solid transparent;
+  transition: background-color 0.2s, border-color 0.2s;
+  border: 1px solid #e5e7eb;
 }
 
 .prompt-item:hover {
-  background-color: #374151;
+  background-color: #f9fafb;
+  border-color: #d1d5db;
 }
 
 .prompt-date {
@@ -339,9 +436,17 @@ button#capture-btn:hover {
   margin-bottom: 6px;
 }
 
+.prompt-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
 .prompt-text {
   font-size: 13px;
-  color: #fff;
+  color: #1f2937;
   margin-bottom: 10px;
   line-height: 1.5;
   /* 3줄까지만 표시 */
@@ -363,9 +468,9 @@ button#capture-btn:hover {
 }
 
 .action-btn {
-  background: none;
-  border: 1px solid #4a5568;
-  color: #9ca3af;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  color: #6b7280;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
@@ -374,8 +479,9 @@ button#capture-btn:hover {
 }
 
 .action-btn:hover {
-  background-color: #4a5568;
-  color: white;
+  background-color: #f3f4f6;
+  color: #1f2937;
+  border-color: #9ca3af;
 }
 
 .copy-btn.success {

@@ -1,8 +1,10 @@
 // 프롬프트 탭 기능 구현
 document.addEventListener('DOMContentLoaded', () => {
   // --- DOM 요소 참조 ---
+  const promptTitle = document.getElementById('prompt-title');
   const promptInput = document.getElementById('prompt-input');
   const saveBtn = document.getElementById('save-prompt-btn');
+  const clearBtn = document.getElementById('clear-prompts-btn');
   const promptList = document.getElementById('prompt-list');
   const promptCount = document.getElementById('prompt-count');
 
@@ -20,15 +22,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const text = promptInput.value.trim();
     if (!text) return;
 
+    const title = promptTitle.value.trim();
     const timestamp = Date.now();
     const newPrompt = {
       id: timestamp,
+      title: title || '', // 제목이 없으면 빈 문자열
       text: text,
       timestamp: timestamp,
       createdAt: new Date().toISOString()
     };
 
     savePrompt(newPrompt);
+  });
+
+  // --- 이벤트: 전체 삭제 버튼 ---
+  clearBtn.addEventListener('click', () => {
+    if (confirm('모든 프롬프트를 삭제하시겠습니까?')) {
+      chrome.storage.local.set({ prompts: [] }, () => {
+        renderPrompts([]);
+      });
+    }
   });
 
   // --- 함수: 프롬프트 저장 ---
@@ -51,9 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // 성공 시 입력창 초기화
+        promptTitle.value = '';
         promptInput.value = '';
         saveBtn.disabled = true;
-        
+
         // 리스트 갱신
         renderPrompts(prompts);
       });
@@ -88,12 +102,18 @@ document.addEventListener('DOMContentLoaded', () => {
   function createPromptElement(item) {
     const div = document.createElement('div');
     div.className = 'prompt-item';
-    
+
     // 날짜 포맷팅
     const dateStr = formatPromptDate(item.timestamp);
 
+    // 제목이 있으면 표시
+    const titleHtml = item.title
+      ? `<div class="prompt-title">${escapeHtml(item.title)}</div>`
+      : '';
+
     div.innerHTML = `
       <div class="prompt-date">${dateStr}</div>
+      ${titleHtml}
       <div class="prompt-text" title="전체 보기">${escapeHtml(item.text)}</div>
       <div class="prompt-actions">
         <button class="action-btn copy-btn">📋 복사</button>

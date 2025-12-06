@@ -15,15 +15,19 @@
 
   <!-- 탭 컨텐츠 영역 -->
   <div class="tab-content-container">
-    
+
     <!-- 1. 스크린샷 탭 -->
     <div id="screenshot-tab" class="tab-content active">
       <div class="container">
-        <!-- 상단 캡처 버튼 -->
+        <!-- 상단 헤더와 캡처 버튼 -->
         <header>
-          <button id="capture-btn">📸 스크린샷 찍기</button>
+          <div class="header-top">
+            <h1 class="page-title">웹페이지 스크린샷</h1>
+            <button id="clear-screenshots-btn" class="clear-all-btn" title="전체 삭제">🗑️</button>
+          </div>
+          <button id="capture-btn">📷 스크린샷 찍기</button>
         </header>
-        
+
         <!-- 메인 미리보기 영역 -->
         <section id="preview-section" class="hidden">
           <div class="preview-container">
@@ -38,11 +42,13 @@
 
         <!-- 빈 상태 메시지 -->
         <div id="empty-state" class="empty-state hidden">
-          <p>아직 캡처한 스크린샷이 없습니다</p>
+          <div class="empty-icon">📷</div>
+          <p class="empty-message">저장된 스크린샷이 없습니다</p>
+          <p class="empty-hint">위 버튼을 눌러 작성하세요</p>
         </div>
 
         <!-- 기록 섹션 -->
-        <section class="history-section">
+        <section id="history-section" class="history-section hidden">
           <h2>기록</h2>
           <div id="thumbnail-grid" class="grid">
             <!-- 썸네일들이 여기에 추가됩니다 -->
@@ -57,6 +63,7 @@
         <!-- 입력 영역 -->
         <section class="input-section">
           <h2>새 프롬프트 작성</h2>
+          <input type="text" id="prompt-title" placeholder="제목 또는 태그 (선택사항)" maxlength="100">
           <textarea id="prompt-input" placeholder="프롬프트를 입력하세요..."></textarea>
           <button id="save-prompt-btn" disabled>💾 저장하기</button>
         </section>
@@ -64,10 +71,13 @@
         <!-- 기록 섹션 -->
         <section class="prompt-history-section">
           <div class="prompt-header">
-            <h2>저장된 프롬프트</h2>
-            <span id="prompt-count" class="count-badge">0/100</span>
+            <div class="prompt-header-left">
+              <h2>저장된 프롬프트</h2>
+              <span id="prompt-count" class="count-badge">0/100</span>
+            </div>
+            <button id="clear-prompts-btn" class="clear-all-btn" title="전체 삭제">🗑️ 전체삭제</button>
           </div>
-          
+
           <div id="prompt-list" class="prompt-list">
             <!-- 프롬프트 리스트 아이템들이 여기에 추가됩니다 -->
           </div>

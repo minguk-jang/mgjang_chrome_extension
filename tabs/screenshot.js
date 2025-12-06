@@ -2,9 +2,11 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- DOM 요소 참조 ---
   const captureBtn = document.getElementById('capture-btn');
+  const clearBtn = document.getElementById('clear-screenshots-btn');
   const thumbnailGrid = document.getElementById('thumbnail-grid');
   const previewSection = document.getElementById('preview-section');
   const emptyState = document.getElementById('empty-state');
+  const historySection = document.getElementById('history-section');
   const mainPreview = document.getElementById('main-preview');
   const infoDate = document.getElementById('info-date');
   const infoUrl = document.getElementById('info-url');
@@ -50,6 +52,16 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error('캡처 실패:', error);
       alert('캡처 중 오류가 발생했습니다: ' + error.message);
+    }
+  });
+
+  // --- 이벤트: 전체 삭제 버튼 ---
+  clearBtn.addEventListener('click', () => {
+    if (confirm('모든 스크린샷을 삭제하시겠습니까?')) {
+      chrome.storage.local.set({ screenshots: [] }, () => {
+        showEmptyState();
+        renderGrid([]);
+      });
     }
   });
 
@@ -107,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- 함수: 그리드 렌더링 ---
   function renderGrid(screenshots) {
-    thumbnailGrid.innerHTML = ''; 
+    thumbnailGrid.innerHTML = '';
 
     if (screenshots.length === 0) {
       showEmptyState();
@@ -116,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     emptyState.classList.add('hidden');
     previewSection.classList.remove('hidden');
+    historySection.classList.remove('hidden');
 
     screenshots.forEach(item => {
       const thumbDiv = document.createElement('div');
@@ -167,6 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function showEmptyState() {
     previewSection.classList.add('hidden');
+    historySection.classList.add('hidden');
     emptyState.classList.remove('hidden');
     currentScreenshot = null;
   }
