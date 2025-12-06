@@ -3,45 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>스크린샷 매니저</title>
+  <title>스크린샷 & 프롬프트 매니저</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div class="container">
-    <!-- 상단 캡처 버튼 -->
-    <header>
-      <button id="capture-btn">📸 스크린샷 찍기</button>
-    </header>
-    
-    <!-- 메인 미리보기 영역 -->
-    <section id="preview-section" class="hidden">
-      <div class="preview-container">
-        <img id="main-preview" src="" alt="선택된 스크린샷">
-      </div>
-      <div class="info-display">
-        <div id="info-date" class="info-date"></div>
-        <a id="info-url" class="info-url" href="#" target="_blank"></a>
-      </div>
-      <div class="copy-hint">Tip: <span class="key-badge">Cmd</span> / <span class="key-badge">Ctrl</span> + <span class="key-badge">C</span> 로 복사</div>
-    </section>
+  <!-- 탭 네비게이션 -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="screenshot-tab">📸 스크린샷</button>
+    <button class="tab-btn" data-tab="prompt-tab">📝 프롬프트 기록</button>
+  </nav>
 
-    <!-- 빈 상태 메시지 -->
-    <div id="empty-state" class="empty-state hidden">
-      <p>아직 캡처한 스크린샷이 없습니다</p>
+  <!-- 탭 컨텐츠 영역 -->
+  <div class="tab-content-container">
+    
+    <!-- 1. 스크린샷 탭 -->
+    <div id="screenshot-tab" class="tab-content active">
+      <div class="container">
+        <!-- 상단 캡처 버튼 -->
+        <header>
+          <button id="capture-btn">📸 스크린샷 찍기</button>
+        </header>
+        
+        <!-- 메인 미리보기 영역 -->
+        <section id="preview-section" class="hidden">
+          <div class="preview-container">
+            <img id="main-preview" src="" alt="선택된 스크린샷">
+          </div>
+          <div class="info-display">
+            <div id="info-date" class="info-date"></div>
+            <a id="info-url" class="info-url" href="#" target="_blank"></a>
+          </div>
+          <div class="copy-hint">Tip: <span class="key-badge">Cmd</span> / <span class="key-badge">Ctrl</span> + <span class="key-badge">C</span> 로 복사</div>
+        </section>
+
+        <!-- 빈 상태 메시지 -->
+        <div id="empty-state" class="empty-state hidden">
+          <p>아직 캡처한 스크린샷이 없습니다</p>
+        </div>
+
+        <!-- 기록 섹션 -->
+        <section class="history-section">
+          <h2>기록</h2>
+          <div id="thumbnail-grid" class="grid">
+            <!-- 썸네일들이 여기에 추가됩니다 -->
+          </div>
+        </section>
+      </div>
     </div>
 
-    <!-- 기록 섹션 -->
-    <section class="history-section">
-      <h2>기록</h2>
-      <div id="thumbnail-grid" class="grid">
-        <!-- 썸네일들이 여기에 추가됩니다 -->
+    <!-- 2. 프롬프트 기록 탭 -->
+    <div id="prompt-tab" class="tab-content">
+      <div class="container">
+        <!-- 입력 영역 -->
+        <section class="input-section">
+          <h2>새 프롬프트 작성</h2>
+          <textarea id="prompt-input" placeholder="프롬프트를 입력하세요..."></textarea>
+          <button id="save-prompt-btn" disabled>💾 저장하기</button>
+        </section>
+
+        <!-- 기록 섹션 -->
+        <section class="prompt-history-section">
+          <div class="prompt-header">
+            <h2>저장된 프롬프트</h2>
+            <span id="prompt-count" class="count-badge">0/100</span>
+          </div>
+          
+          <div id="prompt-list" class="prompt-list">
+            <!-- 프롬프트 리스트 아이템들이 여기에 추가됩니다 -->
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
+
   </div>
 
   <!-- 토스트 알림 -->
   <div id="toast" class="toast hidden">복사됨!</div>
 
+  <!-- 스크립트 -->
+  <script src="tabs/screenshot.js"></script>
+  <script src="tabs/prompts.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

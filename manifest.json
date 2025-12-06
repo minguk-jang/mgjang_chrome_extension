@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "스크린샷 매니저",
-  "version": "1.0",
-  "description": "스크린샷을 캡처하고 관리하며 클립보드에 복사합니다.",
+  "name": "스크린샷 & 프롬프트 매니저",
+  "version": "1.1",
+  "description": "스크린샷 캡처 및 프롬프트 기록 관리 도구",
   "permissions": [
     "activeTab",
     "storage",
