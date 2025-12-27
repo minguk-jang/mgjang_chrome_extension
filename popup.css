@@ -5,9 +5,11 @@ body {
   padding: 0;
   width: 100%;
   height: 100vh;
-  background-color: #ffffff; /* 화이트 배경 */
+  background-color: #ffffff;
+  /* 화이트 배경 */
   color: #1f2937;
-  overflow: hidden; /* 전체 스크롤 방지, 탭 내부 스크롤 사용 */
+  overflow: hidden;
+  /* 전체 스크롤 방지, 탭 내부 스크롤 사용 */
   display: flex;
   flex-direction: column;
 }
@@ -16,9 +18,11 @@ body {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #f9fafb;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #d1d5db;
   border-radius: 4px;
@@ -52,7 +56,8 @@ body {
 
 .tab-btn.active {
   color: #1f2937;
-  border-bottom-color: #3b82f6; /* 활성 탭 파란색 밑줄 */
+  border-bottom-color: #3b82f6;
+  /* 활성 탭 파란색 밑줄 */
 }
 
 /* 탭 컨텐츠 컨테이너 */
@@ -75,8 +80,15 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .container {
@@ -118,16 +130,31 @@ h2 {
   border-radius: 20px;
   font-size: 13px;
   font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   z-index: 100;
   animation: fadeInOut 1.5s forwards;
 }
 
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translate(-50%, 20px); }
-  15% { opacity: 1; transform: translate(-50%, 0); }
-  85% { opacity: 1; transform: translate(-50%, 0); }
-  100% { opacity: 0; transform: translate(-50%, -20px); }
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -20px);
+  }
 }
 
 /* --- 스크린샷 탭 스타일 --- */
@@ -192,7 +219,7 @@ button#capture-btn:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e7eb;
 }
 
@@ -494,4 +521,201 @@ button#capture-btn:hover {
   background-color: #ef4444;
   color: white;
   border-color: #ef4444;
+}
+
+/* --- 색상 추천(Color Palette) 탭 스타일 --- */
+
+.palette-description {
+  font-size: 13px;
+  color: #6b7280;
+  margin: -8px 0 0 0;
+}
+
+/* 기본 팔레트 섹션 */
+.base-palette-section {
+  margin-bottom: 24px;
+}
+
+/* 팔레트 그리드 */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+/* 색상 칩 공통 스타일 */
+.color-chip {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.color-chip:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.color-chip.selected {
+  transform: scale(1.05);
+  border: 3px solid #1f2937;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* HEX 코드 표시 */
+.color-hex {
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.color-chip:hover .color-hex {
+  opacity: 1;
+}
+
+/* 라벨 표시 */
+.color-label {
+  font-size: 9px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-top: 2px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.color-chip:hover .color-label {
+  opacity: 0.8;
+}
+
+/* 기본 칩 (약간 큰 사이즈) */
+.base-chip {
+  min-height: 56px;
+}
+
+/* 선택된 색상 표시 영역 */
+.selected-color-display {
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  gap: 4px;
+}
+
+.selected-color-display.hidden {
+  display: none;
+}
+
+.selected-hex {
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.selected-hex .arrow {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.selected-hex .original-color {
+  opacity: 0.7;
+}
+
+.selected-hex .variant-color {
+  font-weight: 800;
+}
+
+.variant-description {
+  font-size: 11px;
+  font-weight: 500;
+  opacity: 0.8;
+  font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
+}
+
+/* 추천 섹션 */
+.recommendation-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.recommendation-section.hidden {
+  display: none;
+}
+
+.recommendation-section.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 추천 그룹 */
+.recommendation-group {
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.recommendation-group h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 12px 0;
+}
+
+/* 추천 그리드 */
+.recommendation-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+/* 조합 추천 그리드 - 9색을 3x3으로 표시 */
+.recommendation-group:last-child .recommendation-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.recommendation-chip {
+  min-height: 52px;
+}
+
+/* 추천 칩 호버 시 복사 힌트 */
+.recommendation-chip::after {
+  content: '복사';
+  position: absolute;
+  bottom: 4px;
+  font-size: 8px;
+  font-weight: 600;
+  color: inherit;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.recommendation-chip:hover::after {
+  opacity: 0.7;
+}
+
+/* 토스트 오버라이드 (색상 표시용) */
+.toast {
+  white-space: nowrap;
 }
