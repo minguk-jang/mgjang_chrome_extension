@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>스크린샷 & 프롬프트 매니저</title>
   <link rel="stylesheet" href="popup.css">
 </head>
+
 <body>
   <!-- 탭 네비게이션 -->
   <nav class="tab-nav">
     <button class="tab-btn active" data-tab="screenshot-tab">📸 스크린샷</button>
-    <button class="tab-btn" data-tab="prompt-tab">📝 프롬프트 기록</button>
+    <button class="tab-btn" data-tab="prompt-tab">📝 프롬프트</button>
+    <button class="tab-btn" data-tab="colorpalette-tab">🎨 색상 추천</button>
   </nav>
 
   <!-- 탭 컨텐츠 영역 -->
@@ -37,7 +40,8 @@
             <div id="info-date" class="info-date"></div>
             <a id="info-url" class="info-url" href="#" target="_blank"></a>
           </div>
-          <div class="copy-hint">Tip: <span class="key-badge">Cmd</span> / <span class="key-badge">Ctrl</span> + <span class="key-badge">C</span> 로 복사</div>
+          <div class="copy-hint">Tip: <span class="key-badge">Cmd</span> / <span class="key-badge">Ctrl</span> + <span
+              class="key-badge">C</span> 로 복사</div>
         </section>
 
         <!-- 빈 상태 메시지 -->
@@ -85,6 +89,52 @@
       </div>
     </div>
 
+    <!-- 3. 색상 추천 탭 -->
+    <div id="colorpalette-tab" class="tab-content">
+      <div class="container">
+        <header>
+          <h1 class="page-title">색상 팔레트</h1>
+          <p class="palette-description">색상을 선택하면 추천 색상을 확인할 수 있습니다</p>
+        </header>
+
+        <!-- 기본 색상 팔레트 (10개) -->
+        <section class="base-palette-section">
+          <h2>기본 색상</h2>
+          <div id="base-palette-grid" class="palette-grid">
+            <!-- 색상 칩들이 JavaScript로 추가됩니다 -->
+          </div>
+        </section>
+
+        <!-- 선택된 색상 표시 -->
+        <div id="selected-color-display" class="selected-color-display hidden">
+          <span class="selected-hex"></span>
+        </div>
+
+        <!-- 추천 색상 섹션 -->
+        <section id="recommendation-section" class="recommendation-section hidden">
+
+          <!-- 명도 변형 -->
+          <div class="recommendation-group">
+            <h3>🌓 명도 변형 (Lightness)</h3>
+            <div id="lightness-grid" class="palette-grid recommendation-grid"></div>
+          </div>
+
+          <!-- 채도 변형 -->
+          <div class="recommendation-group">
+            <h3>🎨 채도 변형 (Saturation)</h3>
+            <div id="saturation-grid" class="palette-grid recommendation-grid"></div>
+          </div>
+
+          <!-- 조합 추천 -->
+          <div class="recommendation-group">
+            <h3>✨ 조합 추천 (Harmony)</h3>
+            <div id="harmonious-grid" class="palette-grid recommendation-grid"></div>
+          </div>
+
+        </section>
+      </div>
+    </div>
+
   </div>
 
   <!-- 토스트 알림 -->
@@ -93,6 +143,8 @@
   <!-- 스크립트 -->
   <script src="tabs/screenshot.js"></script>
   <script src="tabs/prompts.js"></script>
+  <script src="tabs/colorpalette.js"></script>
   <script src="popup.js"></script>
 </body>
+
 </html>
